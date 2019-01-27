@@ -1,5 +1,4 @@
-import inputHandler from './inputhandler.js';
-
+import InputHandler from './InputHandler';
 
 function preload ()
 {
@@ -15,11 +14,12 @@ function create ()
 	player.setInteractive();
 
 	player.onClick = function(pointer, game) {
+		/*
 		game.tweens.add({
 			targets: player,
 			x: {value: player.x - 50, duration: 2000, ease: 'Bounce.easeOut'},
 			y: {value: player.y - 50, duration: 2000, ease: 'Bounce.easeOut'},
-		});
+		});*/
 	};
 
 /*
@@ -60,3 +60,4 @@ let config = {
 };
 
 let game = new Phaser.Game(config);
+const inputHandler = new InputHandler(game);
