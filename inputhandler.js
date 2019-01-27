@@ -3,6 +3,9 @@ class InputHandler {
 		this.game = game;
 		this.test = 10000000;
 		console.log("This.game was defined", this.game);
+
+		this.inputDown = this.inputDown.bind(this);
+		this.inputUp = this.inputUp.bind(this);
 	}
 
 	inputDown(pointer, gameObject) {
