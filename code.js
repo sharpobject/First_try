@@ -13,34 +13,27 @@ function create ()
 	let player = this.add.image(600, 450, 'bomb');
 	player.setInteractive();
 
-	player.onClick = function(pointer, game) {
-		/*
+	player.onClick = function(pointer, game, activeObject) {
+		console.log("clicked on the fucking player");
+	};
+
+	player.onRelease = function(pointer, game) {
+		console.log("released the piece of shit player");
+	};
+
+	player.onActivate = function(pointer, game, activeObject) {
+		console.log("activated this pleasant object", game);
+		console.log("tweens", game.tweens);
 		game.tweens.add({
 			targets: player,
 			x: {value: player.x - 50, duration: 2000, ease: 'Bounce.easeOut'},
 			y: {value: player.y - 50, duration: 2000, ease: 'Bounce.easeOut'},
-		});*/
+		});
 	};
 
-/*
-	let inputDown = function(pointer, gameObject) {
-		if (gameObject.onClick) {
-			gameObject.onClick(pointer, this);
-		} else {
-			console.log("no callback")
-		};
-	};
-	
-	let inputUp = function(pointer, gameObject) {
-		console.log("released")
-	};
 
-	this.input.on('gameobjectdown', inputDown, this);
-	this.input.on('gameobjectup', inputUp, this);
-*/
 	this.input.on('gameobjectdown', inputHandler.inputDown, this);
 	this.input.on('gameobjectup', inputHandler.inputUp, this);
-
 }
 
 function update ()
