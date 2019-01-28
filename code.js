@@ -14,15 +14,15 @@ function create ()
 	player.setInteractive();
 
 	player.onClick = function(pointer, game, activeObject) {
-		console.log("clicked on the fucking player");
+		console.log("clicked on the player");
 	};
 
 	player.onRelease = function(pointer, game) {
-		console.log("released the piece of shit player");
+		console.log("released the player");
 	};
 
 	player.onActivate = function(pointer, game, activeObject) {
-		console.log("activated this pleasant object", game);
+		console.log("activated this object", game);
 		console.log("tweens", game.tweens);
 		game.tweens.add({
 			targets: player,
