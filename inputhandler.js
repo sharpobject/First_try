@@ -1,19 +1,19 @@
 /*
 	Attempts to call these game object methods:
 
-	onClick(pointer, game, activeObject)
+	onClick(pointer, activeObject)
 		Called when clicking on a valid game object. For animations and stuff.
 
-	onRelease(pointer, game)
+	onRelease(pointer, activeObject)
 		Called when releasing a click. For animations and stuff.
 		If an object was already selected for tap method, both the previous
 		object and the new object will call this method.
 
-	onSelect(pointer, game)
+	onSelect(pointer, activeObject)
 		Called when releasing a click on a clicked object with no previously
 		tapped object (tap mode). For animations and stuff.
 
-	onActivate(pointer, game, activeObject)
+	onActivate(pointer, activeObject)
 		Called to "play" a game object. Use this to affect the game.
 		If drag-and-drop method is used, activeObject will be whatever was
 		initially dragged from.
@@ -33,68 +33,61 @@
 */
 
 class InputHandler {
-	constructor(game) {
-		this.game = game;
+	constructor() {
 		this.activeClick = null;
 		this.activeObject = null;
 
-		// bleh
+		// Fuck this binding shit
 		this.inputDown = this.inputDown.bind(this);
 		this.inputUp = this.inputUp.bind(this);
 	}
 
 	inputDown(pointer, gameObject) {
 		if (this.activeClick) { // ban multitouch controls
-			console.log("no click recorded");
 			return
 		};
 		if (gameObject.onClick) {
-			gameObject.onClick(pointer, this.game, this.activeObject);
+			gameObject.onClick(pointer, this.activeObject);
 			this.activeClick = gameObject;
-			console.log("set activeclick", this.activeClick);
 		};
 	}
 
 	// TODO: Ban multi-touch and only accept inputUp when there's only one touch-press
 	inputUp(pointer, gameObject) {
 		if (!this.activeClick) { // invalid release
-			console.log("no release recorded");
 			return
 		};
 		if (this.activeObject) { // tap control
 			if (!this.activeClick === gameObject) { // invalid tap
 				this.activeObject = null;
-				console.log("invalid tap");
 				return
 			}; 
 			if (this.activeObject.onRelease) {
-				this.activeObject.onRelease(pointer, this.game)
+				this.activeObject.onRelease(pointer, this.activeObject)
 			};
 			if (gameObject.onRelease) {
-				gameObject.onRelease(pointer, this.game)
+				gameObject.onRelease(pointer, this.activeObject)
 			};
 			if (gameObject.onActivate) {
-				gameObject.onActivate(pointer, this.game, this.activeObject)
+				gameObject.onActivate(pointer, this.activeObject)
 			};
 			this.activeObject = null;
-			console.log("active object set to null");
 		} else {
 			if (this.activeClick === gameObject) { // tap control
 				if (gameObject.onSelect) {
-					gameObject.onSelect(pointer, this.game)
+					gameObject.onSelect(pointer, this.activeObject)
 				};
 				this.activeObject = gameObject;
 			} else { // drag and drop control
 				if (this.activeClick.onRelease) {
-					this.activeClick.onRelease(pointer, this.game)
+					this.activeClick.onRelease(pointer, this.activeClick)
 				};
 				if (gameObject.onActivate) {
-					gameObject.onActivate(pointer, this.game, this.activeClick)
+					gameObject.onActivate(pointer, this.activeClick)
 				};
 			};
 		};
 		this.activeClick = null;
-		console.log("activeclick set to null");
 	}
 }
 

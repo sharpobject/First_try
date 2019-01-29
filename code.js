@@ -1,4 +1,5 @@
 import InputHandler from './InputHandler';
+import Player from './Player';
 
 function preload ()
 {
@@ -10,30 +11,13 @@ function create ()
 {
 	this.add.image(400, 300, 'sky');
 
-	let player = this.add.image(600, 450, 'bomb');
-	player.setInteractive();
-
-	player.onClick = function(pointer, game, activeObject) {
-		console.log("clicked on the player");
-	};
-
-	player.onRelease = function(pointer, game) {
-		console.log("released the player");
-	};
-
-	player.onActivate = function(pointer, game, activeObject) {
-		console.log("activated this object", game);
-		console.log("tweens", game.tweens);
-		game.tweens.add({
-			targets: player,
-			x: {value: player.x - 50, duration: 2000, ease: 'Bounce.easeOut'},
-			y: {value: player.y - 50, duration: 2000, ease: 'Bounce.easeOut'},
-		});
-	};
-
-
 	this.input.on('gameobjectdown', inputHandler.inputDown, this);
 	this.input.on('gameobjectup', inputHandler.inputUp, this);
+
+	let anotherPlayer = new Player(this, 500, 500, 'bomb');
+	let anotherPlayer2 = new Player(this, 400, 400, 'bomb');
+	let anotherPlayer3 = new Player(this, 300, 300, 'bomb');
+
 }
 
 function update ()
@@ -52,5 +36,5 @@ let config = {
     }
 };
 
+const inputHandler = new InputHandler();    
 let game = new Phaser.Game(config);
-const inputHandler = new InputHandler(game);
