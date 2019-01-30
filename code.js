@@ -14,10 +14,8 @@ function create ()
 	this.input.on('gameobjectdown', inputHandler.inputDown, this);
 	this.input.on('gameobjectup', inputHandler.inputUp, this);
 
-	let anotherPlayer = new Player(this, 500, 500, 'bomb');
-	let anotherPlayer2 = new Player(this, 400, 400, 'bomb');
-	let anotherPlayer3 = new Player(this, 300, 300, 'bomb');
-
+	let player = new Player(this, 500, 500, 'bomb');
+	let anotherPlayer = new Player(this, 200, 200, 'bomb');
 }
 
 function update ()
