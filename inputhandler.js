@@ -82,8 +82,8 @@ class InputHandler {
 				if (this.activeClick.onRelease) {
 					this.activeClick.onRelease(pointer, this.activeClick)
 				};
-				if (gameObject.onActivate) {
-					gameObject.onActivate(pointer, this.activeClick)
+				if (this.activeClick.onActivate) {
+					this.activeClick.onActivate(pointer, gameObject)
 				};
 			};
 		};

@@ -4,9 +4,10 @@
 
 class Player {
 	constructor(scene, x, y, image) {
+		this.scene = scene;
+
 		this.sprite = new Phaser.Physics.Arcade.Sprite(scene, x, y, image);
 		this.sprite.setInteractive();
-
 		scene.sys.displayList.add(this.sprite);
 		scene.sys.updateList.add(this.sprite);
 		
@@ -22,29 +23,24 @@ class Player {
 	}
 
 	onClick(pointer, activeObject) {
-		console.log("clicked on the player");
-		console.log("active object is:", activeObject);
+		console.log("clicked on player,", activeObject);
 	};
 
 	onRelease(pointer, activeObject) {
-		console.log("released the player");
-		console.log("active object is:", activeObject);
+		console.log("released player,", activeObject);
 	}
 
 	onSelect(pointer, activeObject) {
-		console.log("selected the player");
-		console.log("active object is:", activeObject);
+		console.log("selected player,", activeObject);
 	}
 
 	onActivate(pointer, activeObject) {
-		console.log("activated the player");
-		console.log("active object is:", activeObject);
-
-		this.sprite.scene.tweens.add({
-			targets: this,
-			x: {value: this.x + 25, duration: 2000, ease: 'Bounce.easeOut'},
-			y: {value: this.y + 25, duration: 2000, ease: 'Bounce.easeOut'},
-		})
+		console.log("activated player,", activeObject);
+		this.scene.tweens.add({
+			targets: this.sprite,
+			x: {value: this.sprite.x + 200, duration: 2000, ease: 'Bounce.easeOut'},
+			y: {value: this.sprite.y + 200, duration: 2000, ease: 'Bounce.easeOut'},
+		});
 	}
 }
 
