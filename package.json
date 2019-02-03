@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/brian-lui/First_try#readme",
   "devDependencies": {
-    "typescript": "^3.3.1"
+    "typescript": "^3.3.1",
+    "webpack": "^4.29.0"
   }
 }
