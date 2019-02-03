@@ -1,0 +1,22 @@
+{
+  "name": "first_try",
+  "version": "1.0.0",
+  "description": "First try thanks",
+  "main": "Index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brian-lui/First_try.git"
+  },
+  "author": "Brian Lui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brian-lui/First_try/issues"
+  },
+  "homepage": "https://github.com/brian-lui/First_try#readme",
+  "devDependencies": {
+    "typescript": "^3.3.1"
+  }
+}

@@ -1,6 +1,6 @@
-import Particles from './Particles';
-import Player from './Player';
-import preloadAll from './preload';
+import Particles from './Particles.js';
+import Player from './Player.js';
+import preloadAll from './preload.js';
 
 function preload ()
 {
