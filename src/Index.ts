@@ -29,11 +29,7 @@ const config = {
     height: 600 as number,
     width: 800 as number,
 
-    scene: {
-        preload: preload,
-        create: create,
-        update: update,
-    },
+    scene: {preload, create, update},
 };
 
 const game = new Phaser.Game(config);
