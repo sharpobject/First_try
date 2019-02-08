@@ -1,6 +1,6 @@
-import Particles from "./Particles";
-import Player from "./Player";
-import preloadAll from "./preload";
+import Particles from "./Particles.ts";
+import Player from "./Player.ts";
+import preloadAll from "./preload.ts";
 
 function preload() {
     preloadAll(this);
